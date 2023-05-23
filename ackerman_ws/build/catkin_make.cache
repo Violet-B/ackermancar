@@ -1,0 +1,2 @@
+box:car_model:carmodel
+-DCATKIN_DEVEL_PREFIX=/home/billy/roslearning/ackcar/ackerman_ws/devel -DCMAKE_INSTALL_PREFIX=/home/billy/roslearning/ackcar/ackerman_ws/install -G Unix Makefiles

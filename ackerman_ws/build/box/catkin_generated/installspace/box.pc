@@ -1,0 +1,8 @@
+prefix=/home/billy/roslearning/ackcar/ackerman_ws/install
+
+Name: box
+Description: Description of box
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

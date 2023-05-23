@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+	<include file="$(find carmodel)/launch/spawn_xacro.launch">
+
+		<arg name="x" value="0.0"/>
+		<arg name="y" value="0.0"/>
+		<arg name="z" value="0.0"/>
+		<arg name="urdf_robot_file" value="$(find carmodel)/urdf/car.xacro"/>
+		<arg name="robot_name" value="smart"/>
+
+	</include>
+
+	<include file="$(find carmodel)/launch/control.launch">
+    <arg name="robot_name" value="smart"/>
+    <arg name="config_file" value="smart_control_config.yaml"/>
+	</include>
+
+</launch>

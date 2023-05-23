@@ -1,0 +1,8 @@
+prefix=/home/billy/roslearning/ackcar/ackerman_ws/devel
+
+Name: carmodel
+Description: Description of carmodel
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
