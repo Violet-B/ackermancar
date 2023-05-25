@@ -11,9 +11,12 @@
 
 	</include>
 
-	<include file="$(find carmodel)/launch/control.launch">
+  <include file="$(find carmodel)/launch/control.launch">
     <arg name="robot_name" value="smart"/>
-    <arg name="config_file" value="smart_control_config.yaml"/>
-	</include>
+    <arg name="config_file" value="ros_control_config.yaml"/>
+  </include>
+
+  <node pkg="rviz" type="rviz" name="rviz" />
+  <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" output="screen" />
 
 </launch>
