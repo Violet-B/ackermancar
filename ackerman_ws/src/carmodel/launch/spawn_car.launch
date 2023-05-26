@@ -16,7 +16,13 @@
     <arg name="config_file" value="ros_control_config.yaml"/>
   </include>
 
-  <node pkg="rviz" type="rviz" name="rviz" />
-  <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" output="screen" />
+    <!-- launch rviz -->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find carmodel)/config_rviz/car.rviz" />
+  <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" respawn="true" output="screen" />
+
+    <!-- launch gazebo -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+      <arg name="world_name" value="$(find carmodel)/worlds/walls.world" />
+  </include>
 
 </launch>

@@ -52,3 +52,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/car_model" TYPE FILE FILES "/home/billy/roslearning/ackcar/ackerman_ws/src/car_model/package.xml")
 endif()
 
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/car_model" TYPE PROGRAM FILES "/home/billy/roslearning/ackcar/ackerman_ws/build/car_model/catkin_generated/installspace/cmdvel2gazebo.py")
+endif()
+

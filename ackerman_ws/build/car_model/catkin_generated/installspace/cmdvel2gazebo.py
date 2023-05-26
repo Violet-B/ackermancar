@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import rospy
 from std_msgs.msg import Float64
@@ -22,20 +22,17 @@ class CmdVel2Gazebo:
         self.z = 0
 
         # car Wheelbase (in m)
-        # rear_tyre_x + front_tyre_x
         self.L = 1.868
 
         # car Tread
-        # rear(front)_tyre_y * 2
         self.T_front = 1.284
         self.T_rear = 1.284 #1.386
 
-        # seconds delay for the dead man's switch
-        self.timeout=rospy.Duration.from_sec(0.1);
+        # how many seconds delay for the dead man's switch
+        self.timeout=rospy.Duration.from_sec(0.2);
         self.lastMsg=rospy.Time.now()
 
         # maximum steer angle of the "inside" tire
-        # str_angle
         self.maxsteerInside=0.6;
 
         # turning radius for maximum steer angle just with the inside tire
@@ -50,7 +47,7 @@ class CmdVel2Gazebo:
         self.maxsteer=math.atan2(self.L,rIdeal)
 
         # loop
-        rate = rospy.Rate(20) # run at 10Hz
+        rate = rospy.Rate(10) # run at 10Hz
         while not rospy.is_shutdown():
             self.publish()
             rate.sleep()
@@ -58,8 +55,7 @@ class CmdVel2Gazebo:
 
     def callback(self,data):
         # w = v / r
-        # r = rear_tyre_r
-        self.x = data.linear.x / 0.3  #速度
+        self.x = data.linear.x / 0.3
         # constrain the ideal steering angle such that the ackermann steering is maxed out
         self.z = max(-self.maxsteer,min(self.maxsteer,data.angular.z))
         self.lastMsg = rospy.Time.now()
@@ -69,7 +65,7 @@ class CmdVel2Gazebo:
         # reset the velocity, so that if we don't hear new
         # ones for the next timestep that we time out; note
         # that the tire angle will not change
-        # NOTE: we only set self.x to be 0 after 100ms of timeout
+        # NOTE: we only set self.x to be 0 after 200ms of timeout
         delta_last_msg_time = rospy.Time.now() - self.lastMsg
         msgs_too_old = delta_last_msg_time > self.timeout
         if msgs_too_old:
@@ -140,6 +136,3 @@ if __name__ == '__main__':
         pass
 
 
-
-# x: 直线速度
-# z: 转向角
